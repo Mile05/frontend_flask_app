@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Mi Tienda</h1>
+            <ul class="nav-links">
+                <li><a href="dashboard.html">Productos</a></li>
+                <li><a href="ventas.html">Ventas</a></li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="container">
+<form id="sellForm">
+    <h2>Productos</h2>
+    <div class="form-group">
+        <label for="productName">Nombre:</label>
+        <input type="text" id="productName" name="productName" required>
+    </div>
+    <div class="form-group">
+        <label for="productPrice">Precio:</label>
+        <input type="number" id="productPrice" name="productPrice" step="0.01" required>
+    </div>
+    <div class="form-group">
+        <label for="productStock">Stock:</label>
+        <input type="number" id="productStock" name="productStock" required>
+    </div>
+    <button type="submit">Crear Producto</button>
+</form>
+
+<ul id="productList">
+    <!-- Aquí se mostrarán los productos -->
+</ul>
+</div>
+<script src="dashboard.js"></script>
+</body>
+</html>
