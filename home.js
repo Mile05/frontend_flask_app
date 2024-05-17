@@ -8,19 +8,37 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('password').value;
 
         try {
-            const response = await fetch('http://localhost:5000/usuarios');
-            if (!response.ok) {
-                throw new Error('Failed to fetch');
-            }
-            const usuarios = await response.json();
+            const response = await fetch('http://localhost:8000/oauth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'username': username,
+                    'password': password
+                })
+            });
 
-            const usuarioEncontrado = usuarios.find(usuario => usuario.username === username && usuario.password === password);
-            if (usuarioEncontrado) {
-                alert('¡Inicio de sesión exitoso!');
-                
-                window.location.href = 'dashboard.html';
+            if (!response.ok) {
+                if (response.status === 401) {
+                    alert('Nombre de usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.');
+                } else {
+                    throw new Error('Failed to fetch');
+                }
             } else {
-                alert('Nombre de usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.');
+                const data = await response.json();
+                const accessToken = data.access_token;
+                
+                alert('¡Inicio de sesión exitoso!');
+                console.log('Access Token:', accessToken);
+                
+                // You can store the token in localStorage or sessionStorage if needed
+                sessionStorage.setItem('access_token', accessToken);
+
+                // Redirect to dashboard or another page
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 100);
             }
         } catch (error) {
             console.error('Error:', error);

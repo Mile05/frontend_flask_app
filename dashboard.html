@@ -8,38 +8,46 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="container">
-            <h1 class="logo">Mi Tienda</h1>
-            <ul class="nav-links">
-                <li><a href="dashboard.html">Productos</a></li>
-                <li><a href="ventas.html">Ventas</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar">
+    <div class="container">
+        <h1 class="logo">Mi Tienda</h1>
+        <ul class="nav-links">
+            <li><a href="dashboard.html">Productos</a></li>
+            <li><a href="ventas.html">Ventas</a></li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container">
-<form id="sellForm">
-    <h2>Productos</h2>
-    <div class="form-group">
-        <label for="productName">Nombre:</label>
-        <input type="text" id="productName" name="productName" required>
-    </div>
-    <div class="form-group">
-        <label for="productPrice">Precio:</label>
-        <input type="number" id="productPrice" name="productPrice" step="0.01" required>
-    </div>
-    <div class="form-group">
-        <label for="productStock">Stock:</label>
-        <input type="number" id="productStock" name="productStock" required>
-    </div>
-    <button type="submit">Crear Producto</button>
-</form>
+    <form id="productForm">
+        <h2>Productos</h2>
+        <div class="form-group">
+            <label for="productName">Nombre:</label>
+            <input type="text" id="productName" name="productName" required>
+        </div>
+        <div class="form-group">
+            <label for="productPrice">Precio:</label>
+            <input type="number" id="productPrice" name="productPrice" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="productStock">Stock:</label>
+            <input type="number" id="productStock" name="productStock" required>
+        </div>
+        <div class="form-group">
+            <label for="productCategory">Categoría:</label>
+            <select id="productCategory" name="productCategory" required>
+                <option value="" disabled selected>Selecciona una categoría</option>
+                <!-- Opciones de categorías se agregarán dinámicamente -->
+            </select>
+        </div>
+        <button type="button" id="createProductBtn">Crear Producto</button>
+    </form>
 
-<ul id="productList">
-    <!-- Aquí se mostrarán los productos -->
-</ul>
+    <ul id="productList">
+        <!-- Aquí se mostrarán los productos -->
+    </ul>
 </div>
+
 <script src="dashboard.js"></script>
 </body>
 </html>

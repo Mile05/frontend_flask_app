@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Función para cargar y mostrar la lista de ventas
     async function cargarVentas() {
         try {
-            const response = await fetch('http://localhost:5000/ventas');
+            const response = await fetch('http://localhost:8000/ventas/ventas');
             if (!response.ok) {
                 throw new Error('Failed to fetch sales');
             }
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 deleteButton.textContent = 'Eliminar';
                 deleteButton.addEventListener('click', async () => {
                     try {
-                        const response = await fetch(`http://localhost:5000/eliminar_venta/${venta.id}`, {
+                        const response = await fetch(`http://localhost:8000/ventas/ventas/${venta.id}`, {
                             method: 'DELETE'
                         });
                         if (!response.ok) {
@@ -52,12 +52,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const id_product = document.getElementById('sellProductId').value;
 
         try {
-            const response = await fetch('http://localhost:5000/crear_venta', {
+            const response = await fetch('http://localhost:8000/ventas/ventas', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ quantity, observation, id_product })
+                body: JSON.stringify({ quantity: parseInt(quantity), observation, id_product: parseInt(id_product) })
             });
             if (!response.ok) {
                 throw new Error('Failed to create sale');
