@@ -2,6 +2,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const sellForm = document.getElementById('sellForm');
     const sellList = document.getElementById('sellList');
 
+    const logout = document.getElementById('logout');
+
+    logout.addEventListener('click', async function(event) {
+        event.preventDefault();
+        try {
+            sessionStorage.removeItem('access_token');
+
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 100);
+            
+        } catch (error) {
+            console.error('Error al crear el producto:', error);
+        }
+    });
+
     // Función para cargar y mostrar la lista de ventas
     async function cargarVentas() {
         try {
@@ -19,17 +35,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Eliminar';
+                deleteButton.id = "deleteButton"
                 deleteButton.addEventListener('click', async () => {
                     try {
                         const response = await fetch(`http://localhost:8000/ventas/ventas/${venta.id}`, {
                             method: 'DELETE'
                         });
                         if (!response.ok) {
-                            throw new Error('Failed to delete sale');
+                            const errorData = await response.json();
+                            throw new Error(errorData.detail || 'Failed to delete product');
                         }
                         listItem.remove(); // Eliminar el elemento de la lista
                     } catch (error) {
                         console.error('Error al eliminar la venta:', error);
+                        alert(`Error al eliminar la venta: ${error.message}`);
                     }
                 });
 

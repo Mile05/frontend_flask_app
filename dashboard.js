@@ -5,6 +5,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const createProductBtn = document.getElementById('createProductBtn');
 
+    const logout = document.getElementById('logout');
+
+    logout.addEventListener('click', async function(event) {
+        event.preventDefault();
+        try {
+            sessionStorage.removeItem('access_token');
+
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 100);
+            
+        } catch (error) {
+            console.error('Error al crear el producto:', error);
+        }
+    });
+
     function getToken() {
         return sessionStorage.getItem('access_token');
     }
@@ -53,7 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Eliminar';
-                deleteButton.type = "button"; // Cambiado de 'submit' a 'button'
+                // deleteButton.type = "button";
+                deleteButton.id = "deleteButton"
                 deleteButton.addEventListener('click', async () => {
                     try {
                         const response = await fetch(`http://localhost:8000/products/products/${producto.id}`, {
@@ -63,11 +80,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
                         });
                         if (!response.ok) {
-                            throw new Error('Failed to delete product');
+                            const errorData = await response.json();
+                            throw new Error(errorData.detail || 'Failed to delete product');
                         }
                         listItem.remove();
                     } catch (error) {
                         console.error('Error al eliminar el producto:', error);
+                        alert(`Error al eliminar el producto: ${error.message}`);
                     }
                 });
 

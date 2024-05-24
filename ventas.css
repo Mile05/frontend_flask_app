@@ -8,7 +8,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
 }
 
 .navbar {
@@ -48,16 +48,27 @@ label {
     margin-bottom: 5px;
 }
 
+#deleteButton{
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 15px;
+    float: right;
+}
+
 input[type="text"],
 input[type="number"] {
-    width: 100%;
+    width: calc(100% - 22px);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-button[type="submit"] {
+button[type="button"] {
     background-color: #333;
     color: #fff;
     border: none;
@@ -66,21 +77,33 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-button[type="submit"]:hover {
+button[type="button"]:hover {
     background-color: #555;
 }
 
-/* Estilos de la lista de productos */
-#productList {
+/* Estilos de la lista de ventas */
+#sellList {
     list-style: none;
     padding: 0;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
 }
 
-#productList li {
+#sellList li {
     border-bottom: 1px solid #ccc;
     padding: 10px 0;
 }
 
-#productList li:last-child {
+#sellList li:last-child {
     border-bottom: none;
+}
+
+#logout {
+    float: right;
+    color: #fff;
+    text-decoration: none;
+}
+
+#logout:hover {
+    text-decoration: underline;
 }

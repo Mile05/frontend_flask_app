@@ -49,7 +49,8 @@ label {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -57,7 +58,18 @@ input[type="number"] {
     box-sizing: border-box;
 }
 
-button[type="submit"] {
+#deleteButton{
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 15px;
+    float: right;
+}
+
+button[type="button"] {
     background-color: #333;
     color: #fff;
     border: none;
@@ -66,7 +78,7 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-button[type="submit"]:hover {
+button[type="button"]:hover {
     background-color: #555;
 }
 
@@ -83,4 +95,12 @@ button[type="submit"]:hover {
 
 #productList li:last-child {
     border-bottom: none;
+}
+
+/* Estilos para el logout */
+#logout {
+    float: right;
+    margin-left: auto;
+    color: #fff;
+    text-decoration: none;
 }
